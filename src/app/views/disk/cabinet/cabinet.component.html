@@ -1,0 +1,121 @@
+<div class="container">
+    <ul class="breadcrumb">
+        <li class="breadcrumb__item breadcrumb__item-firstChild">
+        <span class="breadcrumb__inner">
+        <span class="breadcrumb__title">พื้นที่จัดเก็บ</span>
+        </span>
+        </li>
+        <li class="breadcrumb__item">
+        <span class="breadcrumb__inner">
+        <span class="breadcrumb__title">ตู้เอกสาร</span>
+        </span>
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <button (click)="triggerModal(modalData)" type="button" class="btn btn-outline-primary" style="float: right;">
+            <span class="material-icons-outlined" style="vertical-align: middle;">
+            add_circle_outline
+            </span>
+            เพิ่มตู้เอกสาร
+        </button>
+    </div>
+</div>
+
+<ng-template #modalData let-modal>
+    <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">เพิ่มรายการ</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <label for="diskname" class="col-sm-2 col-form-label">ชื่อตู้เอกสาร</label>
+                <input type="text" class="form-control" [(ngModel)]="diskForm.name" placeholder="ชื่อตู้เอกสาร">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <label for="diskname" class="col-sm-2 col-form-label">คำอธิบาย</label>
+                <input type="text" class="form-control" [(ngModel)]="diskForm.description" placeholder="คำอธิบาย">
+            </div>
+        </div>
+        
+    </div>
+    <div class="modal-footer">
+        <button (click)="modalSave()" type="button" class="btn btn-outline-primary">Save</button>
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #modalDataEdit let-modal>
+    <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">แก้ไขรายการ</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <label for="diskname" class="col-sm-2 col-form-label">ชื่อตู้เอกสาร</label>
+                <input type="text" class="form-control" [(ngModel)]="editForm.name" placeholder="ชื่อตู้เอกสาร">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <label for="diskname" class="col-sm-2 col-form-label">คำอธิบาย</label>
+                <input type="text" class="form-control" [(ngModel)]="editForm.description" placeholder="คำอธิบาย">
+            </div>
+        </div>
+        
+    </div>
+    <div class="modal-footer">
+        <button (click)="modalEditSave()" type="button" class="btn btn-outline-primary">Save</button>
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">Close</button>
+    </div>
+</ng-template>
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                <th scope="col">ตู้เอกสาร</th>
+                <th scope="col">ระดับ</th>
+                <th scope="col">คำอธิบาย</th>
+                <th scope="col">จัดการ</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let cabinet of cabinet;">
+                <tr>
+                    <td>
+                        <img style="width: 22px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Filing_cabinet_icon.svg/1200px-Filing_cabinet_icon.svg.png">
+                        <a class="cu-td-link" [routerLink]="['/drawer', cabinet.id]">{{cabinet.name}}</a>
+                    </td>
+                    <td>-</td>
+                    <td>{{cabinet.description}}</td>
+                    <td>
+                        <button class="btn btn-c" (click)="editTbl(modalDataEdit,cabinet)"><span class="material-icons-outlined" style="font-size:18px;">edit_note</span></button>
+                        <button class="btn btn-c bg-danger" (click)="deleteTbl(cabinet.id)"><span class="material-icons-outlined" style="font-size:18px;">delete</span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <button (click)="goBack()" type="button" class="btn btn-outline-primary">
+            <span class="material-icons-outlined" style="vertical-align: middle;">
+            arrow_circle_left
+            </span>
+            ย้อนกลับ
+        </button>
+    </div>
+</div>

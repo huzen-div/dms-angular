@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="btn-group">
+            <select aria-label="Default select" cSelect #diskdriveSelect (change)='onOptionsDiskdriveSelected($event)'>
+                <option>เลือกพื้นที่จัดเก็บ</option>
+                <option *ngFor="let diskdrive of diskdrive;" [value]="diskdrive.id" [attr.diskdrive_name]="diskdrive.name">
+                    <!-- <img style="width: 22px;" src="https://cdn.pixabay.com/photo/2013/07/12/17/22/database-152091_960_720.png"> -->
+                    {{diskdrive.name}}
+                </option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                <th scope="col">เส้นทางจัดการเอกสาร</th>
+                <th scope="col">ระดับ</th>
+                <th scope="col">ประเภท</th>
+                <th scope="col">จัดการ</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let fileCabinet of fileCabinet;">
+                <tr (click)="rowCabinetClick(fileCabinet.id)">
+                    <td>
+                        <img style="width: 22px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Filing_cabinet_icon.svg/1200px-Filing_cabinet_icon.svg.png">
+                        {{fileCabinet.name}}
+                    </td>
+                    <td>-</td>
+                    <td>
+                        <img style="width: 22px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Filing_cabinet_icon.svg/1200px-Filing_cabinet_icon.svg.png">
+                        {{fileCabinet.type}}
+                    </td>
+                    <td><img  style="width: 22px;"  src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_add_48px-512.png"></td>
+                </tr>
+                <ng-container *ngIf="fileCabinet.drawer !== null;">
+                    <ng-container *ngFor="let drawer of fileCabinet.drawer;">
+                        <tr >
+                            <td style="padding-left: 20px;">
+                                <img style="width: 19px;" src="https://cdn.iconscout.com/icon/free/png-256/drawer-554-1132042.png">
+                                {{drawer.name}}
+                            </td>
+                            <td>-</td>
+                            <td>
+                                <img style="width: 19px;" src="https://cdn.iconscout.com/icon/free/png-256/drawer-554-1132042.png">
+                                {{drawer.type}}
+                            </td>
+                            
+                            <td><img  style="width: 22px;"  src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_add_48px-512.png"></td>
+                        </tr>
+                        <ng-container *ngIf="drawer.mainFile !== null;">
+                            <ng-container *ngFor="let mainFile of drawer.mainFile;">
+                                <tr>
+                                    <td style="padding-left: 40px;">
+                                        <img style="width: 19px;" src="https://cdn-icons-png.flaticon.com/512/235/235251.png">
+                                        {{mainFile.name}}
+                                    </td>
+                                    <td>-</td>
+                                    <td>
+                                        <img style="width: 19px;" src="https://cdn-icons-png.flaticon.com/512/235/235251.png">
+                                        {{mainFile.type}}
+                                    </td>
+                                    <td><img  style="width: 22px;"  src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_add_48px-512.png"></td>
+                                </tr>
+                                <ng-container *ngIf="mainFile.subFile !== null;">
+                                    <ng-container *ngFor="let subFile of mainFile.subFile;">
+                                        <tr>
+                                            <td style="padding-left: 60px;">
+                                                <img style="width: 19px;" src="https://www.dol.go.th/trat/SiteAssets/Pages/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87QRCODE/File-icon-PNG-715x715.png">
+                                                {{subFile.name}}
+                                            </td>
+                                            <td>-</td>
+                                            <td>
+                                                <img style="width: 19px;" src="https://www.dol.go.th/trat/SiteAssets/Pages/%E0%B8%AA%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%87QRCODE/File-icon-PNG-715x715.png">
+                                                {{subFile.name}}
+                                            </td>
+                                            <td><img  style="width: 22px;"  src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_add_48px-512.png"></td>
+                                        </tr>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+</div>

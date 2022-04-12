@@ -1,0 +1,220 @@
+<div class="container">
+    <ul class="breadcrumb">
+        <li class="breadcrumb__item breadcrumb__item-firstChild">
+        <span class="breadcrumb__inner">
+        <span class="breadcrumb__title">พื้นที่จัดเก็บ</span>
+        </span>
+        </li>
+        <li class="breadcrumb__item">
+        <span class="breadcrumb__inner">
+        <span class="breadcrumb__title">ตู้เอกสาร</span>
+        </span>
+        </li>
+        <li class="breadcrumb__item">
+        <span class="breadcrumb__inner">
+        <span class="breadcrumb__title">ลิ้นชัก</span>
+        </span>
+        </li>
+        <li class="breadcrumb__item breadcrumb__item-lastChild">
+        <span class="breadcrumb__inner">
+        <span class="breadcrumb__title">แฟ้มหลัก</span>
+        </span>
+        </li>
+        <li class="breadcrumb__item breadcrumb__item-lastChild">
+        <span class="breadcrumb__inner">
+        <span class="breadcrumb__title">แฟ้มย่อย</span>
+        </span>
+        </li>
+        <li class="breadcrumb__item breadcrumb__item-lastChild">
+        <span class="breadcrumb__inner">
+        <span class="breadcrumb__title">เอกสาร</span>
+        </span>
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <button (click)="triggerModal(modalData)" type="button" class="btn btn-outline-primary" style="float: right;">
+            <span class="material-icons-outlined" style="vertical-align: middle;">
+            add_circle_outline
+            </span>
+            เพิ่มเอกสาร
+        </button>
+    </div>
+</div>
+
+<ng-template #modalData let-modal>
+    <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">เพิ่มรายการ</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="col-form-label">ชื่อเอกสาร</label>
+                <input type="text" class="form-control" [(ngModel)]="documentForm.documentName">
+            </div>
+            <div class="col-sm-6">
+                <label class="col-form-label">รหัสเอกสาร</label>
+                <input type="text" class="form-control" [(ngModel)]="documentForm.documentCode">
+            </div>
+            <div class="col-sm-6">
+                <label class="col-form-label">กลุ่มเอกสาร</label>
+                <select class="form-select" [(ngModel)]="selectedDocumentGroup">
+                    <option *ngFor="let o of documentGroup" [value]="o.groupCode">
+                        {{o.groupName}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-sm-3" style="display: flex; flex-direction: column; flex-wrap: wrap; align-content: flex-start; justify-content: flex-end;">
+                <button (click)="triggerModal(modalGroup)" type="button" class="btn btn-outline-primary">
+                    <span class="material-icons-outlined" style="vertical-align: middle;">
+                    add_circle_outline
+                    </span>
+                    เพิ่มกลุ่ม
+                </button>
+            </div>
+            <div class="col-sm-3" style="display: flex;justify-content: flex-end;flex-direction: column;">
+                <!-- <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx"> -->
+                <input id="file-upload" type="file" style="display: none;" (change)="fileChange($event)"/>
+                <label for="file-upload" type="button" class="btn btn-outline-primary">
+                    <span class="material-icons-outlined" style="vertical-align: middle;">
+                    add_to_photos
+                    </span>
+                    แนบไฟล์
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button (click)="modalSave()" type="button" class="btn btn-outline-primary">Save</button>
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #modalDataEdit let-modal>
+    <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">เพิ่มรายการ</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="col-form-label">ชื่อเอกสาร</label>
+                <input type="text" class="form-control" [(ngModel)]="documentEditForm.documentName">
+            </div>
+            <div class="col-sm-6">
+                <label class="col-form-label">รหัสเอกสาร</label>
+                <input type="text" class="form-control" [(ngModel)]="documentEditForm.documentCode">
+            </div>
+            <div class="col-sm-6">
+                <label class="col-form-label">กลุ่มเอกสาร</label>
+                <select class="form-select" [(ngModel)]="selectedDocumentGroupEdit">
+                    <option *ngFor="let o of documentGroup" [value]="o.groupCode" [selected]="o.groupCode == selectedDocumentGroupEdit">
+                        {{o.groupName}}
+                    </option>
+                </select>
+            </div>
+            <!-- <div class="col-sm-3" style="display: flex; flex-direction: column; flex-wrap: wrap; align-content: flex-start; justify-content: flex-end;">
+                <button (click)="triggerModal(modalGroup)" type="button" class="btn btn-outline-primary">
+                    <span class="material-icons-outlined" style="vertical-align: middle;">
+                    add_circle_outline
+                    </span>
+                    เพิ่มกลุ่ม
+                </button>
+            </div>
+            <div class="col-sm-3" style="display: flex;justify-content: flex-end;flex-direction: column;">
+                <input id="file-upload" type="file" style="display: none;" (change)="fileChange($event)"/>
+                <label for="file-upload" type="button" class="btn btn-outline-primary">
+                    <span class="material-icons-outlined" style="vertical-align: middle;">
+                    add_to_photos
+                    </span>
+                    แนบไฟล์
+                </label>
+            </div> -->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button (click)="modalEditSave()" type="button" class="btn btn-outline-primary">Save</button>
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #modalGroup let-modal>
+    <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">เพิ่มกลุ่ม</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <label class="col-form-label">ชื่อกลุ่ม</label>
+                <input type="text" class="form-control" [(ngModel)]="documentGroupName">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button (click)="saveGroup()" type="button" class="btn btn-outline-primary">Save</button>
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Save click')">Close</button>
+    </div>
+</ng-template>
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                <th scope="col">เอกสาร</th>
+                <th scope="col">ระดับ</th>
+                <th scope="col">กลุ่มเอกสาร</th>
+                <th scope="col">จัดการ</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let document of document;">
+                <tr>
+                    <td>
+                        <ng-container *ngIf="document.fileextension == 'doc';else templateA">
+                            <img style="width: 22px;" src="./assets/img/storages/852684-small.jpg">
+                        </ng-container>
+                        <ng-template #templateA>
+                            <ng-container *ngIf="document.fileextension == 'image';else templateB">
+                                <img style="width: 22px;" src="./assets/img/storages/image-icon-16423.jpg">
+                            </ng-container>
+                            <ng-template #templateB>
+                                <ng-container>
+                                    <img style="width: 22px;" src="./assets/img/storages/852684-small.jpg">
+                                </ng-container>
+                            </ng-template>
+                        </ng-template>
+                        <span style="padding-left:3px;">{{document.documentname}}</span>
+                    </td>
+                    <td>-</td>
+                    <td>{{document.groupname}}</td>
+                    <td>
+                        <button class="btn btn-c" (click)="openModalEdit(modalDataEdit,document)"><span class="material-icons-outlined" style="font-size:18px;">edit_note</span></button>
+                        <button class="btn btn-c bg-danger" (click)="deleteTbl(document.id)"><span class="material-icons-outlined" style="font-size:18px;">delete</span></button>
+                    </td>
+                    <!-- <td><img style="width: 22px;" src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_add_48px-512.png"></td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <button (click)="goBack()" type="button" class="btn btn-outline-primary">
+            <span class="material-icons-outlined" style="vertical-align: middle;">
+            arrow_circle_left
+            </span>
+            ย้อนกลับ
+        </button>
+    </div>
+</div>

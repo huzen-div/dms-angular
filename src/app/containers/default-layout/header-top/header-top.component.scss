@@ -1,0 +1,170 @@
+.header-cu-level-1 {
+    min-height: 80px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 10%);
+    margin-bottom: 8px;
+}
+@media (min-width: 1200px) {
+    .container{
+        max-width: 1230px;
+    }
+}
+.nav-e-self-service{
+    // font-family: "Kanit-ExtraBold";
+    // font-family: 'Kanit', sans-serif;
+    font-weight: 600;
+    color: #005C9E;
+    font-size: 30px !important;
+    line-height: 45px;
+    // margin: 0 0 0 80px;
+    margin-left: 90px;
+}
+.nav-e-self-service span {
+    font-weight: 200;
+    // font-size: 30px !important;
+    // font-family: 'Kanit-ExtraLight' !important;
+}
+
+.display_1, .display_2, .display_3 {
+    width:24px;
+    font-size:14px !important;
+    line-height:14px;
+    border:1px solid #C4C4C4;
+    margin-left:5px;
+}
+
+.display_1 { 
+    color:#FFFFFF;
+    background:#000000;
+}
+
+.display_2 { 
+    color:#000000;
+    background:#FFFFFF;
+}
+
+.display_3 { 
+    color:#FFC444;
+    background:#000000;
+}
+
+
+.header-level2 {
+    position: relative;
+    margin:-34px 0 0;
+    color: #FFFFFF;
+}
+
+.background {
+    background: rgb(0,92,158);
+    background: linear-gradient(90deg, rgba(0,92,158,0) 5%, rgba(0,92,158,1) 5%, rgba(0,92,158,1) 95%, rgba(255,195,36,0) 95%);
+    border-radius: 53px;
+}
+
+.bg-right {
+    border-top-right-radius: 53px;
+    border-bottom-right-radius: 53px;
+    background: rgb(0,92,158);
+    background: linear-gradient(135deg, rgba(0,92,158,0) 16%, rgba(255,195,36,1) 16%, rgba(255,195,36,1) 100%);
+}
+.text-right{
+    padding: 14px 0;
+    float: right;
+    padding-right: 13px;
+}
+
+.background .logo {
+    position:absolute;
+    bottom:-20px;
+    left:0;
+}
+
+.navbar-brand {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+// Begin breadcrumb
+// .breadcrumb {
+//     display: flex;
+//     border-radius: 10px;
+//     margin: auto;
+//     text-align: center;
+//     top: 50%;
+//     width: 100%;
+//     height: 40px;
+//     transform: translateY(-50%);
+//     z-index: 1;
+//     // justify-content: center;
+//     justify-content: flex-start;
+// }
+
+// .breadcrumb__item {
+//     // height: 100%;
+//     height: 85%;
+//     background-color: white;
+//     color: #252525;
+//     border-radius: 7px;
+//     transition: all 0.3s ease;
+//     /* text-transform: uppercase; */
+//     position: relative;
+//     display: inline-flex;
+//     justify-content: center;
+//     align-items: center;
+//     font-size: 16px;
+//     transform: skew(-21deg);
+//     box-shadow: 0 2px 5px rgb(0 0 0 / 26%);
+//     margin: 5px;
+//     padding: 0 14px;
+//     cursor: pointer;
+// }
+
+
+// .breadcrumb__item:hover {
+//     background: #005c9e;
+//     color: #FFF;
+// }
+
+
+// .breadcrumb__inner {
+//     display: flex;
+//     flex-direction: column;
+//     margin: auto;
+//     z-index: 2;
+//     transform: skew(21deg);  
+// }
+
+// .breadcrumb__title {
+//     font-size: 16px;
+//     text-overflow: ellipsis;  
+//     overflow: hidden;
+//     white-space: nowrap;  
+// }
+
+// @media all and (max-width: 1000px) {
+//     .breadcrumb {
+//     height: 35px;
+//     }
+
+//     .breadcrumb__title{
+//     font-size: 11px;
+//     }
+//     .breadcrumb__item {
+//     padding: 0 30px;
+//     }
+// }
+
+// @media all and (max-width: 710px) {
+//     .breadcrumb {
+//     height: 30px;
+//     }
+//     .breadcrumb__item {
+//     padding: 0 20px;
+//     }
+// }
+// End breadcrumb
